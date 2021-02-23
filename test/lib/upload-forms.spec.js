@@ -24,11 +24,7 @@ describe('upload-forms', () => {
 
   it('should merge supported properties into form', async () => {
     // when
-    return uploadForms.__with__({
-      api: {
-        formsValidate: ()=> Promise.resolve({ok: true})
-      }
-    })(async () => {
+    return uploadForms(async () => {
       const logWarn = sinon.spy(log, 'warn');
       await uploadForms(`${BASE_DIR}/merge-properties`, FORMS_SUBDIR);
       expect(logWarn.callCount).to.equal(2);
